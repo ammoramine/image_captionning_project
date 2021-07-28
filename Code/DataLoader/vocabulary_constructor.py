@@ -1,8 +1,9 @@
+""" module to construct a vocabulatory from a set of captions"""
 from torchtext.legacy.data import Field
 from pycocotools.coco import COCO
 from collections import defaultdict
-
-
+import pandas as pd
+import os,pickle
 
 
 class VocabulatoryConstructor:
@@ -40,4 +41,10 @@ class VocabulatoryConstructor:
 
 
 if __name__ == '__main__':
-    """construct a vocabulatory from a set of captions"""
+    dirFile = os.path.dirname(__file__)
+    pathToDataXlsx = os.path.join(dirFile, "../../Data/dataInfo.xlsx")
+    data_info = pd.read_excel(pathToDataXlsx)
+    vocab_constructor = VocabulatoryConstructor(data_info)
+    vocab = vocab_constructor.vocab
+    path_vocab = os.path.join(dirFile,"vocab")
+    pickle.dump(vocab, open(path_vocab, "wb"))
