@@ -6,7 +6,7 @@ import torch
 import numpy as np
 
 try:
-    from . import vocabulary_constructor
+    from Code.DataLoader import vocabulary_constructor
 except:
     import vocabulary_constructor
 dirFile = os.path.dirname(__file__)
@@ -91,7 +91,7 @@ class CaptioningData(Dataset):
 if __name__ == '__main__':
 
     import pandas as pd
-    pathToDataXlsx = os.path.join(dirFile, "../Data/dataInfo.xlsx")
+    pathToDataXlsx = os.path.join(dirFile, "../../Data/dataInfo.xlsx")
 
     assert os.path.exists(pathToDataXlsx)
     data = pd.read_excel(pathToDataXlsx)
@@ -99,8 +99,8 @@ if __name__ == '__main__':
     vocab = vocab_constructor.vocab
 
     dirFile = os.path.dirname(__file__)
-    trainDir = os.path.join(dirFile, "../Data/train-images_old")
-    valDir = os.path.join(dirFile,"../Data/val-images")
+    trainDir = os.path.join(dirFile, "../../Data/train-images_old")
+    valDir = os.path.join(dirFile, "../../Data/val-images")
 
     assert os.path.exists(trainDir)
     assert os.path.exists(valDir)

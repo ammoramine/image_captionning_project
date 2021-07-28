@@ -4,9 +4,9 @@ from openimages.download import _download_images_by_id
 dirFile = os.path.dirname(__file__)
 class DataDownLoader:
     def __init__(self):
-        self.pathToDataXlsx = os.path.join(dirFile, "../../Data/dataInfo.xlsx")
-        self.pathToTrainImages = os.path.join(dirFile, "../../Data/train-images")
-        self.pathToValImages = os.path.join(dirFile, "../../Data/val-images")
+        self.pathToDataXlsx = os.path.join(dirFile, "../../../Data/dataInfo.xlsx")
+        self.pathToTrainImages = os.path.join(dirFile, "../../../Data/train-images")
+        self.pathToValImages = os.path.join(dirFile, "../../../Data/val-images")
 
         assert os.path.exists(self.pathToDataXlsx)
 

@@ -9,7 +9,7 @@ from openimages.download import _download_images_by_id
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 dirFile = os.path.dirname(__file__)
-path_json = os.path.join(dirFile, '../../Data/open_images_train_v6_captions.jsonl')
+path_json = os.path.join(dirFile, '../../../Data/open_images_train_v6_captions.jsonl')
 
 #TODO get the data from
 
@@ -46,6 +46,6 @@ if __name__ == '__main__':
         data = fetch_info_from_json(path_json,10000)
         data = split_data_to_training_and_validation_dataset(data)
         dirFile = os.path.dirname(__file__)
-        data.to_excel(os.path.join(dirFile, "../../Data/dataInfo.xlsx"))
+        data.to_excel(os.path.join(dirFile, "../../../Data/dataInfo.xlsx"))
     else:
         print("data is already defined")
