@@ -13,7 +13,7 @@ path_json = os.path.join(dirFile, '../../Data/open_images_train_v6_captions.json
 
 #TODO get the data from
 
-def fetch_info_from_json(path_json,N):
+def fetch_info_from_json(path_json,N=10000):
     """Loop through the content of the JSON file and fetch the information of the first 100,000 images
         inputs:
         path_json : contains information about id of image caption, and id annotator
@@ -23,7 +23,6 @@ def fetch_info_from_json(path_json,N):
         json_list = json_file.read().split('\n')
         np.random.shuffle(json_list)
         data = []
-        # N = 10000
         for ix, json_str in Tqdm(enumerate(json_list), N):
             if ix == N: break
             try:

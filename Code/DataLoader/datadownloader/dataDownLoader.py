@@ -37,11 +37,11 @@ class DataDownLoader:
     def load_train_data(self):
         """download images associated with training data w.r.t to the data_info excel file"""
         subset_imageIds = self.dataInfo[self.dataInfo['train']].image_id.tolist()
-        _download_images_by_id(subset_imageIds, 'train', '../Data/train-images/')
+        _download_images_by_id(subset_imageIds, 'train', self.pathToTrainImages)
     def load_val_data(self):
         """download images associated with testing data w.r.t to the data_info excel file"""
         subset_imageIds = self.dataInfo[~self.dataInfo['train']].image_id.tolist()
-        _download_images_by_id(subset_imageIds, 'train', '../Data/val-images/')
+        _download_images_by_id(subset_imageIds, 'train', self.pathToValImages)
 
 
     def get_ids_images_downloaded(self):
