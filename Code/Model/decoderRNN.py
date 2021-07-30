@@ -16,7 +16,9 @@ class DecoderRNN(nn.Module):
         """Decode image feature vectors and generates captions."""
         embeddings = self.embed(captions)
         embeddings = torch.cat((features.unsqueeze(1), embeddings), 1)
-        #features of image along with embedding of each word are concatenated
+        #features of images must be of same size as embedding of each word, and are put to
+        # the beginning
+        #TODO: add test to check if it the size of the features are the same as the size of embeddings
         packed = pack_padded_sequence(embeddings, lengths.cpu(), batch_first=True)
         outputs, _ = self.lstm(packed)
         # each embedding (embedding of all image features + embedding word) are
@@ -29,8 +31,11 @@ class DecoderRNN(nn.Module):
         """Generate captions for given image features using greedy search."""
         sampled_ids = []
         inputs = features.unsqueeze(1)
+        # firsts inputs are the image features (os the same size as embeddings)
         for i in range(self.max_seq_length):
-            hiddens, states = self.lstm(inputs, states)  # hiddens: (batch_size, 1, hidden_size) , the hidden and cell state are initiated to 0
+            hiddens, states = self.lstm(inputs, states)
+            # hiddens: (batch_size, 1, hidden_size) ,
+            # the hidden and cell state are initiated to 0
             outputs = self.linear(hiddens.squeeze(1))  # outputs: (batch_size, vocab_size)
             _, predicted = outputs.max(1)  # predicted: (batch_size)
             sampled_ids.append(predicted)

@@ -6,9 +6,10 @@ import torch
 import numpy as np
 
 try:
-    from Code.DataLoader import vocabulary_constructor
+    from . import vocabulary_constructor
 except:
-    import vocabulary_constructor
+    from DataLoader import vocabulary_constructor
+
 dirFile = os.path.dirname(__file__)
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
